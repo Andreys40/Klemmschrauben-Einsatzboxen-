@@ -8,6 +8,7 @@
         :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; }
         
+        /* Header Bereich */
         header { 
             background: var(--dark); 
             color: white; 
@@ -21,7 +22,13 @@
             align-items: center;
         }
 
-        header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.2rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
         header p { 
             margin: 10px 0 0 0; 
             font-size: 1.4rem; 
@@ -32,9 +39,19 @@
             padding-top: 5px;
         }
 
-        .logo-container { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); }
-        .logo-container img { max-height: 110px; width: auto; }
+        .logo-container { 
+            position: absolute; 
+            right: 40px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+        }
+
+        .logo-container img { 
+            max-height: 110px; 
+            width: auto; 
+        }
         
+        /* Layout-Gitter (3 Spalten) */
         .container { 
             max-width: 1400px; 
             margin: 2rem auto; 
@@ -44,9 +61,21 @@
             gap: 20px; 
         }
 
-        .side-column { display: flex; flex-direction: column; gap: 20px; }
-        .side-column img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #fff; }
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
+        .side-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        /* Mobile Ansicht */
         @media (max-width: 1100px) {
             .container { grid-template-columns: 1fr; } 
             .side-column { display: none; } 
@@ -77,16 +106,16 @@
 
 <div class="container">
     <aside class="side-column">
-        <img src="Schraube.PNG" alt="Bohrer Oben Links">
-        <img src="Schraube1.PNG" alt="Bohrer Unten Links">
-        <img src="Screenshot.png" alt="Bild Oben Rechts">
-        <img src="20250919_165433.jpg" alt="Bild Unten Rechts">
+        <img src="oben-links.jpg.jfif" alt="Bohrer Oben Links">
+        <img src="unten-links.jpg.png" alt="Bohrer Unten Links">
+        <img src="oben-rechts.jpg.png" alt="Bild Oben Rechts">
+        <img src="unten-rechts.jpg.png" alt="Bild Unten Rechts">
     </aside>
     
     <main>
         <div class="card">
             <h2>Größe wählen (10 Stück)</h2>
-            <p style="color: #666;">Max. 5 Packungen pro Größe verfügbar</p>
+<p style="color: #666;">Max. 5 Packungen pro Größe verfügbar</p>
             <select id="product-select">
                 <optgroup label="Größen">
                     <option value="M2 × 4 mm (10 Stück)|15">M2 × 4 mm - 15 €</option>
@@ -133,28 +162,22 @@
 		    <option value="M6 × 20 mm (10 Stück)|25">M6 × 20 mm - 25 €</option>
                 </optgroup>
             </select>
-            <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
-                <span>Menge:</span>
-                <input type="number" id="qty-select" value="1" min="1" max="5" style="width: 70px;">
-                <button onclick="addToCartFromSelect()">In den Warenkorb</button>
-            </div>
+
+            <button onclick="addToCartFromSelect()">In den Warenkorb</button>
         </div>
 
         <div class="card">
             <h2>Einsatzboxen</h2>
-            <p>Gesamtbestand: <strong><span id="lager-anzeige-boxen">490</span></strong> Stück verfügbar</p>
             <div class="form-group">
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
-                    <h3>10x Einsatzboxen</h3>
+                    <h3>10x Einsatzboxen 18 × 18 × 6mm für Wendeschneidplatten</h3>
                     <p class="price-tag">15,00 €</p>
-                    <input type="number" id="qty-box10" value="1" min="1" style="width: 60px;">
-                    <button onclick="addBoxen('10er')">Hinzufügen</button>
+                    <button onclick="addToCart('10x Einsatzboxen', 15.00)">Hinzufügen</button>
                 </div>
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
-                    <h3>50x Einsatzboxen</h3>
+                    <h3>50x Einsatzboxen 18 × 18 × 6mm für Wendeschneidplatten</h3>
                     <p class="price-tag">60,00 €</p>
-                    <input type="number" id="qty-box50" value="1" min="1" style="width: 60px;">
-                    <button onclick="addBoxen('50er')">Hinzufügen</button>
+                    <button onclick="addToCart('50x Einsatzboxen', 60.00)">Hinzufügen</button>
                 </div>
             </div>
         </div>
@@ -194,18 +217,18 @@
                 <input type="hidden" name="currency_code" value="EUR">
                 <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black; padding: 15px;">Jetzt mit PayPal bezahlen</button>
             </form>
-        </div>
-    </aside>
-</div>
 
+            
 <footer>
     <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
         <div>
             <strong>Impressum & Kontakt:</strong><br>
-            Andreas Seewald<br>
-            Nürnberger Str. 25, 85055 Ingolstadt<br>
-            Tel: 0171 8241679 | USt-ID: DE453482781<br>
-            E-Mail: andreys.83@hotmail.com
+             Andreas Seewald<br>
+		Nürnberger Str. 25<br>
+		85055 Ingolstadt<br>
+            Tel: 0171 8241679<br> 
+		USt-ID: DE453482781<br>
+		<span style="white-space: nowrap;">E-Mail: andreys.83@hotmail.com</span><br>
         </div>
         <div>
             <strong>Rechtliches:</strong><br>
@@ -216,59 +239,19 @@
 </footer>
 
 <script>
-    // Bestände
-    let lagerSchrauben = {
-        "M2 × 4 mm (10 Stück)": 5, "M2 × 8 mm (10 Stück)": 5, "M2,5 × 5 mm (10 Stück)": 5,
-        "M2,5 × 6 mm (10 Stück)": 5, "M3 × 8 mm (10 Stück)": 5, "M3 × 10 mm (10 Stück)": 5,
-        "M3 × 12 mm (10 Stück)": 5, "M3,5 × 8 mm (10 Stück)": 5, "M3,5 × 10 mm (10 Stück)": 5,
-        "M4 × 12 mm (10 Stück)": 5, "M5 × 12 mm (10 Stück)": 5, "M5 × 16 mm (10 Stück)": 5,
-        "M6 × 18 mm (10 Stück)": 5
-    };
-    let bestandBoxen = 490;
-    let cart = [];
-
-    function addToCartFromSelect() {
+    let cart = []; //
+    function addToCartFromSelect() { //
         const s = document.getElementById('product-select');
-        const q = document.getElementById('qty-select');
         const [n, p] = s.value.split('|');
-        const menge = parseInt(q.value) || 1;
-
-        if (lagerSchrauben[n] !== undefined && lagerSchrauben[n] < menge) {
-            alert("Nur noch " + lagerSchrauben[n] + " Packungen verfügbar!");
-            return;
-        }
-        if (lagerSchrauben[n] !== undefined) lagerSchrauben[n] -= menge;
-        addToCart(n, parseFloat(p), menge);
+        addToCart(n, parseFloat(p));
     }
-
-    function addBoxen(typ) {
-        let mengeProPack = (typ === '10er') ? 10 : 50;
-        let preis = (typ === '10er') ? 15.00 : 60.00;
-        let inputId = (typ === '10er') ? 'qty-box10' : 'qty-box50';
-        let anzahlPakete = parseInt(document.getElementById(inputId).value) || 1;
-        let gesamtWunsch = anzahlPakete * mengeProPack;
-
-        if (gesamtWunsch > bestandBoxen) {
-            alert("Nur noch " + bestandBoxen + " Boxen verfügbar!");
-            return;
-        }
-        bestandBoxen -= gesamtWunsch;
-        document.getElementById('lager-anzeige-boxen').innerText = bestandBoxen;
-        addToCart((typ === '10er' ? "10er Boxen" : "50er Boxen"), preis, anzahlPakete);
-    }
-
-    function addToCart(name, price, qty = 1) {
+    function addToCart(name, price) { //
         const item = cart.find(i => i.name === name);
-        if (item) item.qty += qty; else cart.push({name, price, qty});
+        if (item) item.qty++; else cart.push({name, price, qty: 1});
         renderCart();
     }
-
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        renderCart();
-    }
-
-    function renderCart() {
+    function removeFromCart(index) { cart.splice(index, 1); renderCart(); } //
+    function renderCart() { //
         const c = document.getElementById('cart-items');
         c.innerHTML = cart.length ? '' : 'Leer';
         let sub = 0;
@@ -278,17 +261,16 @@
             names.push(`${item.qty}x ${item.name}`);
             c.innerHTML += `<div class="cart-item"><span>${item.qty}x ${item.name}</span><span>${(item.price*item.qty).toFixed(2)}€ <button class="remove-btn" onclick="removeFromCart(${i})">×</button></span></div>`;
         });
-        const ship = (sub >= 150 || sub === 0) ? 0 : 4.89;
+        const ship = (sub >= 150 || sub === 0) ? 0 : 4.89; //
         const total = sub + ship;
         document.getElementById('subtotal').innerText = sub.toFixed(2).replace('.',',');
         document.getElementById('shipping').innerText = ship.toFixed(2).replace('.',',');
         document.getElementById('total').innerText = total.toFixed(2).replace('.',',');
         document.getElementById('pp-amount').value = total.toFixed(2);
-        document.getElementById('pp-item-name').value = "Bestellung: " + names.join(", ");
+        document.getElementById('pp-item-name').value = "Bohrer-Bestellung: " + names.join(", ");
         validateForm();
     }
-
-    function validateForm() {
+    function validateForm() { //
         const fields = ['vorname', 'nachname', 'strasse', 'plz', 'stadt'];
         const allFilled = fields.every(id => {
             const el = document.getElementById(id);
@@ -296,6 +278,16 @@
         });
         document.getElementById('checkout-btn').disabled = !(allFilled && cart.length > 0);
     }
+
 </script>
 </body>
+
 </html>
+
+
+
+
+
+
+
+
